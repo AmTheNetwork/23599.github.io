@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clients Claim</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-image:url("/images/backg.jpeg") ;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fade-in 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center text-primary mb-0">CLIENT CLAIM</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-bordered table-sm fade-in">
+                        <thead>
+                        <tr>
+                            <th scope="col">Client's ID</th>
+                            <th scope="col">Client's Name:</th>
+                            <th scope="col">Client Location</th>
+                            <th scope="col">Equipment Location</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Work to do</th>
+                            <th scope="col">Equipment</th>
+                            <th scope="col">Photo of Equipment</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="view : ${viewclient}">
+                            <td th:text="${view.id}"></td>
+                            <td th:text="${view.clientName}"></td>
+                            <td th:text="${view.clientLocation}"></td>
+                            <td th:text="${view.equipmentLocation}"></td>
+                            <td th:text="${view.phoneNumber}"></td>
+                            <td th:text="${view.workToDo}"></td>
+                            <td th:text="${view.workExplanation}"></td>
+                            <td>
+                                <img th:if="${view.equipmentPhoto != null}" th:src="@{/image/{id}(id=${view.id})}" width="50px"/>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${view.id})}">Edit</a>
+                                <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${view.id})}" onclick="return confirm('Are you sure you want to delete this booking?')">Delete</a>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a href="/query" class="btn btn-primary">Reply to the queries</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNVQ8o7"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

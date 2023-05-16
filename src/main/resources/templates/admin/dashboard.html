@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>User Dashboard</title>
+    <style>
+        body {
+            text-align: center;
+            background-image:url("/images/backg.jpeg") ;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+
+        }
+        h1 {
+            color: black;
+        }
+        h2 {
+            color: black;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        a {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to Rwanda refrigeration Solutions</h1>
+<p>Account For: <span sec:authentication="name"></span></p>
+<p>Position: <span sec:authentication="authorities"></span></p>
+<h1><p><a th:href="@{/}">Home</a></p></h1>
+<h1><p><a th:href="@{/logout}">Log out</a></p></h1>
+<h1><p><a th:href="@{/view}">view-claims</a></p></h1>
+</body>
+</html>
+
+
+
+
+

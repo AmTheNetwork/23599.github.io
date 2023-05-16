@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Log In</title>
+    <style>
+        body {
+            background-image:url("/images/backg.jpeg") ;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+
+        }
+        .form-signin {
+
+            width: 40%;
+            margin: 50px auto;
+            background: linear-gradient( to top right, red,yellow, blue);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 20px;
+        }
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        button[type=submit]:hover {
+            color: black;
+            background: linear-gradient( to top right, red,yellow, blue);
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        div {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/login}" method="POST" class="form-signin">
+    <h1>Log In</h1>
+    <input type="text" name="email" th:placeholder="Email" /> <br /><br />
+    <input type="password" th:placeholder="Password" name="password" /> <br /><br />
+    <button type="submit">Login</button> | <a th:href="@{/register}">Register</a><br />
+    <div th:if="${param.error}"><p>Email or Password is invalid.</p></div> <br />
+</form>
+</body>
+</html>

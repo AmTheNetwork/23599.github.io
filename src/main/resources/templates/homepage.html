@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Homepage</title>
+    <style>
+        body {
+            background-image:url("/images/backg.jpeg") ;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+
+        }
+
+        h1 {
+            color:black;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 10px;
+        }
+
+        div {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        a {
+            color: red;
+            background-color: lightblue;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            color: black;
+            background: linear-gradient( to top right, red,yellow, blue);
+        }
+
+        .logged-in {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logged-in p {
+            margin-bottom: 0;
+        }
+
+        .logged-in a {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>WELCOME TO REFRIGERATION SOLUTION IN RWANDA</h1>
+
+
+<div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+    <p><a th:href="@{|/login|}" th:text="'Log in'"></a></p>
+    <p><a th:href="@{|/register|}" th:text="'Register'"></a></p>
+</div>
+
+<div class="logged-in" sec:authorize="isAuthenticated()">
+    <p>Account For: <span sec:authentication="name"></span></p>
+    <p>Position: <span sec:authentication="authorities"></span></p>
+    <div>
+        <p sec:authorize="hasAuthority('USER')"><a th:href="@{|/dashboard|}" th:text="'User Dashboard'"></a></p>
+        <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/admin/dashboard|}" th:text="'Admin Dashboard'"></a></p><br><br>
+        <a th:href="@{/logout}">Log out</a>
+    </div>
+</div>
+
+</body>
+</html>
